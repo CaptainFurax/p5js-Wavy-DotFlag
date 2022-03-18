@@ -2,5 +2,8 @@
 
 A small p5.js Sketch
 
-Dealing with a 1944 wavy Dotted Ukrainian flag.
+Dealing with a wavy Dotted Ukrainian flag.
+
+1944 Dots, 30fps.
+
 
