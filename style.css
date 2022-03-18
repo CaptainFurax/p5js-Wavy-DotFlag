@@ -1,0 +1,13 @@
+*{  box-sizing: border-box; margin: 0; padding: 0; }
+html, body
+{
+  color: #FFFFFF;
+  background-color: #000000;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-wrap: wrap;
+}
+#myCvs { border: 1px solid #999999; }
