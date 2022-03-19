@@ -18,13 +18,16 @@ function setup()
   // B+J
   clr = [ [1,91,187,255], [254,213,1,255] ];
   //
-  nbi = 48; nbj = nbi/1.5; rayon = 3; step = rayon * 3; alp = 0; fc = 0;
+  nbi = 48; nbj = nbi/1.5; rayon = 3; step = rayon * 3;
+  alp = 0; fc = 0; rp = false;
   flagSize = createVector((nbi-1)*step, (nbj-1)*step);
+  //flagSize = createVector(200,100);
   // #1
   for ( let j = 0; j < nbj; j++ )
   {
     for( let i = 0; i < nbi; i++ )
     {
+     //v = createVector( (width-flagSize.x)/2+(i*step), (height-flagSize.y)/2 + j*step, 0 );
      v = createVector( (width-flagSize.x)/2+(i*step), (height-flagSize.y)/2 + j*step, 0 );
      dim.push( new Dot(rayon, v, clr[ floor(j/(nbj/clr.length)) ] ) );
     }
@@ -44,6 +47,14 @@ function draw()
   //
   //select( "#out" ).html( alp );
 }
+function keyPressed()
+{
+  if ( keyIsDown(32) )
+  {
+    rp = !rp;
+    print ("ffff");
+  }
+}
 //
 class Dot 
 {
@@ -59,8 +70,16 @@ class Dot
         let z = Math.cos( (this.v.y + this.v.x + fc) *D2R ) * 4.8;
         let x = this.v.x + Math.cos( (-this.v.y - this.v.x*1.6 + fc) * D2R ) * 21;
         let y = this.v.y + Math.sin( (-this.v.x - z*1.6 + fc ) * D2R ) * 9;
-        fill( this.c ); 
-        circle( x, y, this.r )
+        if ( rp )
+        {
+          strokeWeight( this.r )
+          stroke( this.c );
+          point( x, y );  
+        } else{
+          fill( this.c ); 
+          noStroke();
+          circle( x, y, this.r )
+        }
     }
 }
 
