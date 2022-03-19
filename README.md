@@ -1,4 +1,4 @@
-# p5js_Waving_Ukrainian_DotFlag
+# p5js => Wavy Ukrainian DotFlag
 
 A small p5.js Sketch
 
