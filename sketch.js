@@ -1,65 +1,66 @@
-//vp => View Position
-let vp; let sf = []; let ang = 0;
+p5.disableFriendlyErrors = true;
+const D2R = Math.PI / 180;
 //
 function preload(){}
 //
 function setup()
 {
-  //rectMode(CENTER);
+  frameRate(25);
+  //
   angleMode(DEGREES);
-  frameRate(30);
+  ellipseMode(CENTER);
   //
-  let cvs = createCanvas(800, 600 );
-  cvs.parent("#myCvs");
-  setVP(0, 0);
+  cvs = createCanvas(800,600);
+  cvs.parent( "#myCvs" );
   //
+  dim = [];
+  cpt = 0;
+  // B+J
+  clr = [ [1,91,187,255], [254,213,1,255] ];
+  //
+  nbi = 48; nbj = nbi/1.5; rayon = 3; step = rayon * 3; alp = 0; fc = 0;
+  flagSize = createVector((nbi-1)*step, (nbj-1)*step);
+  // #1
+  for ( let j = 0; j < nbj; j++ )
+  {
+    for( let i = 0; i < nbi; i++ )
+    {
+     v = createVector( (width-flagSize.x)/2+(i*step), (height-flagSize.y)/2 + j*step, 0 );
+     dim.push( new Dot(rayon, v, clr[ floor(j/(nbj/clr.length)) ] ) );
+    }
+  }
 }
 //
 function draw()
 { 
-  clear();
   background(0);
-  // Starfield
-  for ( let i = 0; i < 1; i++ )
+  for ( let i = 0; i < dim.length; i++ )
   {
-    //sf.push( new Star( createVector(random((width/2)-25, (width/2)+25), random((height/2)-25, (height/2)+25)) ) );
-    sf.push( new Star( createVector(random(width), random(height))) );
+    dim[i].c[3] = alp;
+    dim[i].render();
   }
-  // /!\ Vortex /!\
-  if ( mouseIsPressed )
-  {
-    rotX = cos( frameCount ) * 300;
-    rotY = sin( frameCount ) * 300;
-    setVP(rotX, 0);
-    for ( let j = 0; j < 14; j++ )
-    {
-      let x, y, angle;
-      angle = random( 0,359 );
-      x = width / 2 + cos( angle ) * 20;
-      y = height /2 + sin( angle ) * 20;
-      sf.push( new Star( createVector(x,y), true ) );
-    }
-  } else 
-  {
-    frameRate(30);
-    setVP( 0,0 );
-  }
-    // Rendering & Compute
-    for (  let i in sf )
-    {
-      if ( sf[i].finalFrontier() )
-      {
-        sf.splice( i,1 );
-      } else 
-      {
-        sf[i].update();
-        sf[i].render();
-      }
-    }
-    select("#out").html( ang );
+  fc = millis()/6;
+  alp = round(192 - Math.cos(fc/8 * D2R ) * 64);
+  //
+  //select( "#out" ).html( alp );
 }
 //
-function setVP( x, y )
+class Dot 
 {
-  vp = createVector( map(x, 0, width, 0, 15), map(y, 0, height, 0, 15) );
+    constructor ( r, v, c )
+    {
+        this.r = r;
+        this.v = v;
+        this.c = c;
+    }
+    //
+    render()
+    {
+        let z = Math.cos( (this.v.y + this.v.x + fc) *D2R ) * 4.8;
+        let x = this.v.x + Math.cos( (-this.v.y - this.v.x*1.6 + fc) * D2R ) * 21;
+        let y = this.v.y + Math.sin( (-this.v.x - z*1.6 + fc ) * D2R ) * 9;
+        fill( this.c ); 
+        circle( x, y, this.r )
+    }
 }
+
