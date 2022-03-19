@@ -6,6 +6,6 @@ Dealing with a wavy Dotted Ukrainian flag.
 
 1944 Dots, 30fps.
 
-[.oO°Oo.Demo.oO°Oo.](https://captainfurax.github.io/p5js_Wavy_Ukrainian_DotFlag/)
+[.oO°Oo.Demo.oO°Oo.](https://captainfurax.github.io/p5js-Wavy-DotFlag/)
 
 
