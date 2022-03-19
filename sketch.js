@@ -8,22 +8,23 @@ function setup()
   frameRate(30);
   //
   angleMode(DEGREES);
+  ellipseMode(CENTER);
   //
-  cvs = createCanvas(800,600,WEBGL);
+  cvs = createCanvas(800,600);
   cvs.parent( "#myCvs" );
   //
   dim = [];
-  // BBR
+  // B+J
   clr = [ [1,91,187,255], [254,213,1,255] ];
   //
-  nbi = 54; nbj = nbi/1.5; rayon = 2; step = rayon * 4; alp = 0;
-  tlc = createVector( nbi * step/2-rayon, nbj * step/2-rayon ); //tlc => Top Left Corner as starting point.
+  nbi = 54; nbj = nbi/1.5; rayon = 3; step = rayon * 3; alp = 0;
+  flagSize = createVector((nbi-1)*step, (nbj-1)*step);
   // #1
   for ( let j = 0; j < nbj; j++ )
   {
     for( let i = 0; i < nbi; i++ )
     {
-     v = createVector( i*step-tlc.x, j*step-tlc.y, 0 );
+     v = createVector( (width-flagSize.x)/2+(i*step), (height-flagSize.y)/2 + j*step, 0 );
      dim.push( new Dot(rayon, v, clr[ floor(j/(nbj/clr.length)) ] ) );
     }
   }
@@ -38,7 +39,7 @@ function draw()
     dim[i].c[3] = alp;
     dim[i].render();
   }
-  alp = Math.min(255, alp += 1.4)
+  alp = Math.min( 255, alp += 1.6 );
   //
   select( "#out" ).html( floor(alp) + " - " + dim.length );
 }
@@ -54,12 +55,12 @@ class Dot
     //
     render( )
     {
-        let fc = millis()/6;
-        let z = this.v.z + Math.cos( (-this.v.y - this.v.x*1.6 + fc) * D2R ) * 48;
-        let y = this.v.y + Math.sin( (-this.v.x*1.6 - this.v.z + fc) * D2R ) * 4.8;
-        stroke( this.c ); 
-        strokeWeight( this.r );
-        point( this.v.x, y, z );
+        let fc = millis()/7;
+        let z = cos( (this.v.y + this.v.x + fc) ) * 4.8;
+        let x = this.v.x + cos( -this.v.y - this.v.x*1.6 + fc ) * 21;
+        let y = this.v.y + sin( -this.v.x - z*1.6 + fc ) * 9;
+        fill( this.c ); 
+        circle( x, y, this.r )
     }
 }
 
