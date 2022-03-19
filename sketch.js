@@ -32,16 +32,15 @@ function setup()
 //
 function draw()
 { 
-  clear();
-  background( 0 );
+  background(0);
   for ( let i = 0; i < dim.length; i++ )
   {
-    dim[i].c[3] = alp;
+    // dim[i].c[3] = alp;
     dim[i].render();
   }
-  alp = Math.min( 255, alp += 1.6 );
+  //alp = Math.min( 255, alp += 1.6 );
   //
-  select( "#out" ).html( floor(alp) + " - " + dim.length );
+  //select( "#out" ).html( floor(alp) + " - " + dim.length );
 }
 //
 class Dot
