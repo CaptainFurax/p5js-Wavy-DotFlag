@@ -14,10 +14,11 @@ function setup()
   cvs.parent( "#myCvs" );
   //
   dim = [];
+  cpt = 0;
   // B+J
   clr = [ [1,91,187,255], [254,213,1,255] ];
   //
-  nbi = 48; nbj = nbi/1.5; rayon = 3; step = rayon * 3; alp = 0;
+  nbi = 48; nbj = nbi/1.5; rayon = 3; step = rayon * 3; alp = 0; fc = 0;
   flagSize = createVector((nbi-1)*step, (nbj-1)*step);
   // #1
   for ( let j = 0; j < nbj; j++ )
@@ -32,19 +33,19 @@ function setup()
 //
 function draw()
 { 
-  clear();
-  background( 0 );
+  background(0);
   for ( let i = 0; i < dim.length; i++ )
   {
     dim[i].c[3] = alp;
     dim[i].render();
   }
-  alp = Math.min( 255, alp += 1.6 );
+  fc = millis()/6;
+  alp = round(192 - Math.cos(fc/8 * D2R ) * 64);
   //
-  select( "#out" ).html( floor(alp) + " - " + dim.length );
+  //select( "#out" ).html( alp );
 }
 //
-class Dot
+class Dot 
 {
     constructor ( r, v, c )
     {
@@ -53,12 +54,11 @@ class Dot
         this.c = c;
     }
     //
-    render( )
+    render()
     {
-        let fc = millis()/7;
-        let z = cos( (this.v.y + this.v.x + fc) ) * 4.8;
-        let x = this.v.x + cos( -this.v.y - this.v.x*1.6 + fc ) * 21;
-        let y = this.v.y + sin( -this.v.x - z*1.6 + fc ) * 9;
+        let z = Math.cos( (this.v.y + this.v.x + fc) *D2R ) * 4.8;
+        let x = this.v.x + Math.cos( (-this.v.y - this.v.x*1.6 + fc) * D2R ) * 21;
+        let y = this.v.y + Math.sin( (-this.v.x - z*1.6 + fc ) * D2R ) * 9;
         fill( this.c ); 
         circle( x, y, this.r )
     }
