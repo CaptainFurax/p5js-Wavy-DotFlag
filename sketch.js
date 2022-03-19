@@ -55,9 +55,10 @@ class Dot
     render( )
     {
         let fc = millis()/7;
-        let z = cos( (this.v.y + this.v.x + fc) ) * 4.8;
-        let x = this.v.x + cos( -this.v.y - this.v.x*1.6 + fc ) * 21;
-        let y = this.v.y + sin( -this.v.x - z*1.6 + fc ) * 9;
+        //let fc = frameCount * 6;
+        let z = Math.cos( (this.v.y + this.v.x + fc) *D2R ) * 4.8;
+        let x = this.v.x + Math.cos( (-this.v.y - this.v.x*1.6 + fc) * D2R ) * 21;
+        let y = this.v.y + Math.sin( (-this.v.x - z*1.6 + fc ) * D2R ) * 9;
         fill( this.c ); 
         circle( x, y, this.r )
     }
