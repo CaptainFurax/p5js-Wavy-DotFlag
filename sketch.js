@@ -5,7 +5,7 @@ function preload(){}
 //
 function setup()
 {
-  frameRate(30);
+  frameRate(25);
   //
   angleMode(DEGREES);
   ellipseMode(CENTER);
@@ -17,7 +17,7 @@ function setup()
   // B+J
   clr = [ [1,91,187,255], [254,213,1,255] ];
   //
-  nbi = 54; nbj = nbi/1.5; rayon = 3; step = rayon * 3; alp = 0;
+  nbi = 48; nbj = nbi/1.5; rayon = 3; step = rayon * 3; alp = 0;
   flagSize = createVector((nbi-1)*step, (nbj-1)*step);
   // #1
   for ( let j = 0; j < nbj; j++ )
