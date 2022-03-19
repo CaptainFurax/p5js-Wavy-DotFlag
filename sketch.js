@@ -1,66 +1,65 @@
-p5.disableFriendlyErrors = true;
-const D2R = Math.PI / 180;
+//vp => View Position
+let vp; let sf = []; let ang = 0;
 //
 function preload(){}
 //
 function setup()
 {
-  frameRate(25);
-  //
+  //rectMode(CENTER);
   angleMode(DEGREES);
-  ellipseMode(CENTER);
+  frameRate(30);
   //
-  cvs = createCanvas(800,600);
-  cvs.parent( "#myCvs" );
+  let cvs = createCanvas(800, 600 );
+  cvs.parent("#myCvs");
+  setVP(0, 0);
   //
-  dim = [];
-  // B+J
-  clr = [ [1,91,187,255], [254,213,1,255] ];
-  //
-  nbi = 48; nbj = nbi/1.5; rayon = 3; step = rayon * 3; alp = 0;
-  flagSize = createVector((nbi-1)*step, (nbj-1)*step);
-  // #1
-  for ( let j = 0; j < nbj; j++ )
-  {
-    for( let i = 0; i < nbi; i++ )
-    {
-     v = createVector( (width-flagSize.x)/2+(i*step), (height-flagSize.y)/2 + j*step, 0 );
-     dim.push( new Dot(rayon, v, clr[ floor(j/(nbj/clr.length)) ] ) );
-    }
-  }
 }
 //
 function draw()
 { 
+  clear();
   background(0);
-  for ( let i = 0; i < dim.length; i++ )
+  // Starfield
+  for ( let i = 0; i < 1; i++ )
   {
-    // dim[i].c[3] = alp;
-    dim[i].render();
+    //sf.push( new Star( createVector(random((width/2)-25, (width/2)+25), random((height/2)-25, (height/2)+25)) ) );
+    sf.push( new Star( createVector(random(width), random(height))) );
   }
-  //alp = Math.min( 255, alp += 1.6 );
-  //
-  //select( "#out" ).html( floor(alp) + " - " + dim.length );
+  // /!\ Vortex /!\
+  if ( mouseIsPressed )
+  {
+    rotX = cos( frameCount ) * 300;
+    rotY = sin( frameCount ) * 300;
+    setVP(rotX, 0);
+    for ( let j = 0; j < 14; j++ )
+    {
+      let x, y, angle;
+      angle = random( 0,359 );
+      x = width / 2 + cos( angle ) * 20;
+      y = height /2 + sin( angle ) * 20;
+      sf.push( new Star( createVector(x,y), true ) );
+    }
+  } else 
+  {
+    frameRate(30);
+    setVP( 0,0 );
+  }
+    // Rendering & Compute
+    for (  let i in sf )
+    {
+      if ( sf[i].finalFrontier() )
+      {
+        sf.splice( i,1 );
+      } else 
+      {
+        sf[i].update();
+        sf[i].render();
+      }
+    }
+    select("#out").html( ang );
 }
 //
-class Dot
+function setVP( x, y )
 {
-    constructor ( r, v, c )
-    {
-        this.r = r;
-        this.v = v;
-        this.c = c;
-    }
-    //
-    render( )
-    {
-        let fc = millis()/7;
-        //let fc = frameCount * 6;
-        let z = Math.cos( (this.v.y + this.v.x + fc) *D2R ) * 4.8;
-        let x = this.v.x + Math.cos( (-this.v.y - this.v.x*1.6 + fc) * D2R ) * 21;
-        let y = this.v.y + Math.sin( (-this.v.x - z*1.6 + fc ) * D2R ) * 9;
-        fill( this.c ); 
-        circle( x, y, this.r )
-    }
+  vp = createVector( map(x, 0, width, 0, 15), map(y, 0, height, 0, 15) );
 }
-
