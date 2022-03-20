@@ -48,8 +48,6 @@ function keyPressed()
 {
   if ( keyIsDown(32) )
     rp = !rp;
-  if ( keyIsDown(ENTER) )
-    saveCanvas( "WavyFlag", "jpg");
 }
 //
 class Dot 
