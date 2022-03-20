@@ -10,7 +10,7 @@ function setup()
   angleMode(DEGREES);
   ellipseMode(CENTER);
   //
-  cvs = createCanvas(800,600).id( "mainCanvas" );
+  cvs = createCanvas(500,400).id( "mainCanvas" );
   //
   dim = [];
   cpt = 0;
