@@ -1,17 +1,40 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="FR_fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>010 - Exp #1 - p5</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>DotFlag Of Freedom</title>
+  
+  <link rel="stylesheet" type="text/css" href="style.css">
+  
   <script src="libraries/p5.js"></script>
   <script src="sketch.js"></script>
+  <!--script src="libraries/p5.sound.min.js"></script-->
 </head>
 
-<body>
-  <div id="myCvs"></div>
-  <div id="out">Output :</div>
-</body>
+  <body>
+    <div id="desc">
+      <ul>
+        /|\ Ukrainian DotFlag 4 Freedom /|\
+        <ul>
+          <li>Rendu Canvas 2D</li>
+          <li>En 3D c'etait plus facile...Mais ca ramait avec la fonction Point()...sous Windows10/Chrome.</li>
+          <li>...Alors que sous la meme machine, mais avec Linux/Chrome : impec...</li>
+        </ul>
+        Cheat & Tricks :
+        <ul>
+          <li>Les points sont des 'Circle()' vidés [ diametre de 1px ] - On affiche que leurs contours[ 'StrokeWeight 2px' ] pour simuler un 'pseudo-point'.</li>
+          <li>Avantage : <br/>
+            Circle() p lus lumineux qu'avec la primitive Point() de meme taille. 
+            <li>Circle() plus rapide que Point() [ surtout en Rendu 3D ! ]</li>
+          </li>  
+          <li>Pour la modélisation on calcule un 'pseudo axe-z' qu'on applique à y puisque rendu 2D.</li>
+          <li>Plus quelques ondulations sur x & y.</li>
+        </ul>
+        SpaceBar: Switch rendu Circle() <=> Point() 
+        <p id="out"></p>
+      </ul>
+    </div>
+  </body>
 </html>
