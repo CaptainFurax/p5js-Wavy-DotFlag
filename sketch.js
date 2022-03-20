@@ -42,7 +42,7 @@ function draw()
   fc = millis()/6;
   alp = round(192 - Math.cos(fc/8 * D2R ) * 64);
   //
-  select( "#out" ).html( (rp) ? txt + "Point()":txt + "Circle() " + dim.length );
+  //select( "#out" ).html( (rp) ? txt + "Point()":txt + "Circle() " + dim.length );
 }
 function keyPressed()
 {
