@@ -1,6 +1,5 @@
 p5.disableFriendlyErrors = true;
 const D2R = Math.PI / 180;
-let cvSiz;
 //
 function preload(){}
 //
@@ -11,15 +10,14 @@ function setup()
   angleMode(DEGREES);
   ellipseMode(CENTER);
   //
-  cvSiz = createVector(1024,768);
-  createCanvas(cvSiz.x, cvSiz.y).id( "mainCanvas" );
+  cvs = createCanvas(500,400).id( "mainCanvas" );
   //
   dim = [];
   cpt = 0;
   // B+J
   clr = [ [1,91,187,255], [254,213,1,255] ];
   //
-  nbi = 54; nbj = nbi/1.5; rayon = 3; step = rayon * 3;
+   nbi = 54; nbj = nbi * 0.75; rayon = 3; step = rayon * 3;
   alp = 0; fc = 0; rp = false; txt = "Hit the SpaceBar -> Rendu : ";
   flagSize = createVector((nbi-1)*step, (nbj-1)*step);
   // #1
@@ -31,7 +29,7 @@ function setup()
      dim.push( new Dot(rayon, v, clr[ floor(j/(nbj/clr.length)) ] ) );
     }
   }
-  windowResized();
+  print (nbj)
 }
 //
 function draw()
@@ -45,27 +43,12 @@ function draw()
   fc = millis()/6;
   alp = round(192 - Math.cos(fc/8 * D2R ) * 64);
   //
-  //select( "#out" ).html( (rp) ? txt + "Point()":txt + "Circle()" );
+  select( "#out" ).html( (rp) ? txt + "Point()":txt + "Circle() " + dim.length );
 }
-function windowResized(){
-  let ratio  = createVector( windowWidth / cvSiz.x, windowHeight / cvSiz.y );
-  if ( windowWidth > windowHeight && ratio.x > ratio.y )
-  {
-    select("#mainCanvas").style("width", round(cvSiz.x * ratio.y) + "px");
-    select("#mainCanvas").style("height", windowHeight + "px");
-  } else
-  {
-    select("#mainCanvas").style("width", windowWidth  + "px");
-    select("#mainCanvas").style("height", round(cvSiz.y * ratio.x) + "px");
-  }
-}
-//
 function keyPressed()
 {
   if ( keyIsDown(32) )
     rp = !rp;
-  if ( keyIsDown(ENTER) )
-    saveCanvas( "WavyFlag", "jpg");
 }
 //
 class Dot 
