@@ -2,7 +2,7 @@
 
 A small p5.js Sketch
 + Dealing with a wavy Dotted Ukrainian 'DotFlag' of Freedom.
-+ 1728 Dots, 25fps( could be slow on old computers...try switching to points with spacebar )
++ 972 Dots, 25fps( could be slow on old computers...try switching to points with spacebar )
 + Responsive : Resize & Fit on 4/3 to optimize available space
 + [.oO°Oo.Online Demo.oO°Oo.](https://captainfurax.github.io/p5js-Wavy-DotFlag/)
 
