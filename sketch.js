@@ -22,7 +22,7 @@ function setup()
   // B+J
   clr = [ [1,91,187,255], [254,213,1,255] ];
   //
-  nbi = 48; nbj = nbi * 0.75; rayon = 3; step = rayon * 3;
+  nbi = 36; nbj = nbi * 0.75; rayon = 3; step = rayon * 3;
   alp = 0; fc = 0; rp = false; txt = "Hit the SpaceBar -> Rendu : ";
   flagSize = createVector((nbi-1)*step, (nbj-1)*step);
   // #1
