@@ -1,10 +1,10 @@
 # p5js => Wavy Ukrainian DotFlag
 
-+A small p5.js Sketch
++ A small p5.js Sketch
 
-+Dealing with a wavy Dotted Ukrainian 'DotFlag' of Freedom.
++ Dealing with a wavy Dotted Ukrainian 'DotFlag' of Freedom.
 
-+2214 Dots, 25fps.
++ 2214 Dots, 25fps.
 
 [.oO°Oo.Demo.oO°Oo.](https://captainfurax.github.io/p5js-Wavy-DotFlag/)
 
