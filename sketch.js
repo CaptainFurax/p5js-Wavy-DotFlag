@@ -18,7 +18,7 @@ function setup()
   clr = [ [1,91,187,255], [254,213,1,255] ];
   //
   nbi = 48; nbj = nbi/1.5; rayon = 3; step = rayon * 3;
-  alp = 0; fc = 0; rp = false;
+  alp = 0; fc = 0; rp = false; txt = "Hit the SpaceBar -> Rendu : ";
   flagSize = createVector((nbi-1)*step, (nbj-1)*step);
   // #1
   for ( let j = 0; j < nbj; j++ )
@@ -42,7 +42,7 @@ function draw()
   fc = millis()/6;
   alp = round(192 - Math.cos(fc/8 * D2R ) * 64);
   //
-  select( "#out" ).html( (rp == true ) ? "Point()":"Circle()" );
+  select( "#out" ).html( (rp) ? txt + "Point()":txt + "Circle()" );
 }
 function keyPressed()
 {
@@ -64,14 +64,11 @@ class Dot
         let z = Math.cos( (this.v.y + this.v.x + fc) *D2R ) * 4.8;
         let x = this.v.x + Math.cos( (-this.v.y - this.v.x*1.6 + fc) * D2R ) * 21;
         let y = this.v.y + Math.sin( (-this.v.x - z*1.6 + fc ) * D2R ) * 9;
-        stroke( this.c );
-        strokeWeight( this.r )
-        if ( rp )
-        {
-          point( x, y );  
-        } else{
-          circle( x, y, 1 )
-        }
+        push();
+          strokeWeight( this.r )
+          stroke( this.c );
+          ( rp ) ? point( x, y ) : circle( x, y, 1 );
+        pop();
     }
 }
 
