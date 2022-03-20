@@ -1,8 +1,11 @@
 p5.disableFriendlyErrors = true;
 const D2R = Math.PI / 180;
-let cvSiz;
+let cvSiz; let desc;
 //
-function preload(){}
+function preload()
+{
+  AtariST = loadFont('rsc/AtariST8x16SystemFont.ttf');
+}
 //
 function setup()
 {
@@ -31,6 +34,8 @@ function setup()
      dim.push( new Dot(rayon, v, clr[ floor(j/(nbj/clr.length)) ] ) );
     }
   }
+  //
+  desc = createDiv().id('desc');
   windowResized();
 }
 //
@@ -45,7 +50,12 @@ function draw()
   fc = millis()/6;
   alp = round(192 - Math.cos(fc/8 * D2R ) * 64);
   //
-  //select( "#out" ).html( (rp) ? txt + "Point()":txt + "Circle()" );
+  push();
+    fill("darkgoldenrod");
+    textSize(width / 75 );
+    textFont(AtariST);
+    text("Hit the Space Bar to switch between Point() <=> Circle()", 0, 20);
+  pop();
 }
 function windowResized(){
   let ratio  = createVector( windowWidth / cvSiz.x, windowHeight / cvSiz.y );
@@ -64,8 +74,6 @@ function keyPressed()
 {
   if ( keyIsDown(32) )
     rp = !rp;
-  if ( keyIsDown(ENTER) )
-    saveCanvas( "WavyFlag", "jpg");
 }
 //
 class Dot 
