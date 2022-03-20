@@ -29,7 +29,6 @@ function setup()
      dim.push( new Dot(rayon, v, clr[ floor(j/(nbj/clr.length)) ] ) );
     }
   }
-  print (nbj)
 }
 //
 function draw()
