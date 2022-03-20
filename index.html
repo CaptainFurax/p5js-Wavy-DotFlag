@@ -15,22 +15,22 @@
 
   <body>
     <div id="desc">
+    <h2>/|\ Ukrainian DotFlag 4 Freedom /|\</h2>
       <ul>
-        /|\ Ukrainian DotFlag 4 Freedom /|\
+        Specs: 
         <ul>
           <li>Rendu Canvas 2D</li>
-          <li>En 3D c'etait plus facile...Mais ca ramait avec la fonction Point()...sous Windows10/Chrome.</li>
-          <li>...Alors que sous la meme machine, mais avec Linux/Chrome : impec...</li>
+          <li>Les points sont des primitives 'Circle()' vidées [ diametre de 1px ] - On affiche que leurs contours[ 'StrokeWeight 2px' ] simulant ainsi un 'pseudo-point'.</li>
+          <li>En 3D c'etait plus facile...Mais ca ramait sa race avec la fonction Point() sous Windows10/Chrome [ !? ]</li>
+          <li>...Alors que sous la meme machine, avec Linux/Chrome : c'était impec...</li>
         </ul>
-        Cheat & Tricks :
+        Alors, un Rendu 2D :
         <ul>
-          <li>Les points sont des 'Circle()' vidés [ diametre de 1px ] - On affiche que leurs contours[ 'StrokeWeight 2px' ] pour simuler un 'pseudo-point'.</li>
-          <li>Avantage : <br/>
-            Circle() p lus lumineux qu'avec la primitive Point() de meme taille. 
-            <li>Circle() plus rapide que Point() [ surtout en Rendu 3D ! ]</li>
+            <li>Ou Circle() est plus lumineux qu'avec la primitive Point() pour la meme taille.</li> 
+            <li>Mais ou Point() est plus rapide que Circle() [ alors, qu'  en rendu 3D c'est l'inverse ! ]</li>
           </li>  
-          <li>Pour la modélisation on calcule un 'pseudo axe-z' qu'on applique à y puisque rendu 2D.</li>
-          <li>Plus quelques ondulations sur x & y.</li>
+          <li>Pour la modélisation on calcule un 'pseudo axe-z' qu'on applique à Y puisque rendu 2D.</li>
+          <li>Plus quelques ondulations sur X & Y.</li>
         </ul>
         <p id="out"></p>
       </ul>
