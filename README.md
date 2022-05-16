@@ -5,7 +5,7 @@
 + A small p5.js Sketch
 + [.oO°Oo.Online Demo.oO°Oo.](https://captainfurax.github.io/p5js-Wavy-DotFlag/)
   + Dealing with a wavy Dotted Flag of Freedom.
-  + Based on a memory from a Finnish Demo by Aggression on Atari ST.
+  + Based on a memory from a Finnish Demo by Aggression on Atari ST.![DotFlag](https://github.com/CaptainFurax/p5js-Wavy-DotFlag/blob/main/Aggression-Flag.png)
   + 972 Dots, 25fps( could be slow on old computers...try switching Circle() to Points() rendering, faster, with spacebar )
   + Responsive : Resize & Fit on 4/3 to optimize available space
 
